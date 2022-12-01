@@ -22,7 +22,7 @@ function AppContent() {
     >
       <Grid container spacing={2}>
         <Grid item xs={8}>
-          <Paper>
+          <Paper sx={{ p:'20px' }}>
             <Chat />
             <MessageInput />
           </Paper>
