@@ -1,7 +1,7 @@
 import os
 from flask import Flask, send_from_directory
 from src.api import api
-
+from flask_cors import CORS
 
 def create_app():
     app = Flask(__name__,static_folder='./../frontend/build')
@@ -13,10 +13,11 @@ def create_app():
             return send_from_directory(app.static_folder, path)
         else:
             return send_from_directory(app.static_folder, 'index.html')
-
+    CORS(app)
     return app
 
 
 if __name__ == '__main__':
     app = create_app()
+    
     app.run(host='0.0.0.0', port=5001)

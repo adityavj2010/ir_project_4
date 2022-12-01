@@ -12,7 +12,6 @@ class Solr:
         res = requests.get(URL+query_url)
         print(res.json()['response'] )
         if res.ok:
-            
             response = res.json()['response']    
             if response['numFound']>0:
                 return {
