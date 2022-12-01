@@ -2,11 +2,12 @@ import pysolr
 import requests
 import urllib.parse
 from env import URL
+import urllib.parse
 
 class Solr:
 
     def query(self,text,topic):
-        
+        text = f'"{text}"'
         query_url = f'/select?q=query:{text}&rows=1&wt=json'
         
         res = requests.get(URL+query_url)
