@@ -28,3 +28,5 @@ backend/pyvenv.cfg
 backend/include
 
 instance
+
+*/**/__pycache__

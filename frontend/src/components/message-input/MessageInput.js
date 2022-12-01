@@ -33,6 +33,7 @@ function MessageInput(props) {
         messages:[...messages]
       })
     }
+    
     updateText('')
   };
 

@@ -32,7 +32,7 @@ for key in data.keys():
                     'prompt':prompt
                 })    
 
-solr = pysolr.Solr('http://34.125.141.206:8983/solr/chitchat', always_commit=True,timeout=1100)
+solr = pysolr.Solr('http://34.130.165.83:8983/solr/chitchat', always_commit=True,timeout=1100)
 
 
 print('cleaned_objs',len(cleaned_objs))
