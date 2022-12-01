@@ -15,12 +15,12 @@ import { Paper } from "@mui/material";
 function AppContent() {
   return (
     <Container
-      direction="col"
-      // disableGutters
-      component="main"
-      sx={{ pt: 8, pb: 6 }}
+      // direction="col"
+      // // disableGutters
+      // component="main"
+      
     >
-      <Grid container spacing={2}>
+      <Grid sx={{ pt: 8, pb: 6 }} container spacing={2}>
         <Grid item xs={8}>
           <Paper sx={{ p:'20px' }}>
             <Chat />
