@@ -36,8 +36,8 @@ function Message(props) {
 function Chat(props) {
   let myRef = React.useRef()
   React.useEffect(()=>{
-    console.log('scrollHeight',myRef.current.scrollHeight)
-    myRef.current.scrollTo({behaviour:'smooth',bottom:Number(myRef.current.scrollHeight)})
+    
+    myRef.current.scrollTo(0,Number(myRef.current.scrollHeight))
   },[props?.data?.messages,myRef])
   let messages = Array.isArray(props?.data?.messages)?props?.data?.messages :[]
   return (
