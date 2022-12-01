@@ -20,6 +20,7 @@ function Message(props) {
   const selfText = props.self;
   return (
     <Grid
+      key={props.key}
       container
       padding={1}
       justifyContent={selfText ? "flex-end" : "flex-start"}
@@ -32,25 +33,15 @@ function Message(props) {
   );
 }
 
-function Chat() {
-  const messages = [
-    { self: true, text: "What does asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdMJ say?" },
-    { self: false, text: "HEHEEE" },
-    { self: true, text: "What does asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdMJ say?" },
-    { self: false, text: "HEHEEE" },
-    { self: true, text: "What does asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdMJ say?" },
-    { self: false, text: "HEHEEE" },
-    { self: true, text: "What does asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdMJ say?" },
-    { self: false, text: "HEHEEE" },
-    { self: true, text: "What does asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdMJ say?" },
-    { self: false, text: "HEHEEE" },
-    { self: true, text: "What does asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdMJ say?" },
-    { self: false, text: "HEHEEE" },
-    { self: true, text: "What does asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdMJ say?" },
-    { self: false, text: "HEHEEE" },
-  ];
+function Chat(props) {
+  let myRef = React.useRef()
+  React.useEffect(()=>{
+    console.log('scrollHeight',myRef.current.scrollHeight)
+    myRef.current.scrollTo({behaviour:'smooth',bottom:Number(myRef.current.scrollHeight)})
+  },[props?.data?.messages,myRef])
+  let messages = Array.isArray(props?.data?.messages)?props?.data?.messages :[]
   return (
-    <Grid   sx={{ mb: "20px",minHeight:'400px', maxHeight:'400px' }} spacing={1}>
+    <Grid  ref={myRef} sx={{     overflowY: 'auto', mb: "20px",minHeight:'400px', maxHeight:'400px' }} spacing={1}>
       {messages.map(Message)}
     </Grid>
   );

@@ -12,7 +12,8 @@ import Box from "@mui/material/Box";
 import Topics from "./components/topics/Topics";
 import { Paper } from "@mui/material";
 
-function AppContent() {
+function AppContent(props) {
+
   return (
     <Container
       // direction="col"
@@ -23,13 +24,13 @@ function AppContent() {
       <Grid sx={{ pt: 8, pb: 6 }} container spacing={2}>
         <Grid item xs={8}>
           <Paper sx={{ p:'20px' }}>
-            <Chat />
-            <MessageInput />
+            <Chat data={props.data}/>
+            <MessageInput data={props.data} updateData={props.updateData}/>
           </Paper>
         </Grid>
         <Grid item xs={4}>
           <Paper>
-            <Topics />
+            <Topics {...props} />
           </Paper>
         </Grid>
       </Grid>
@@ -37,7 +38,17 @@ function AppContent() {
   );
 }
 
+
+const appData = {
+  messages:[],
+  topics: {
+
+  }
+}
+
 function App() {
+
+  const [data,updateData] = React.useState(appData)
   return (
     <React.Fragment>
       <GlobalStyles
@@ -46,7 +57,7 @@ function App() {
       <CssBaseline />
       <Header />
       <Box sx={{ flexGrow: 1 }}>
-        <AppContent />
+        <AppContent data={data} updateData={updateData} />
       </Box>
     </React.Fragment>
   );

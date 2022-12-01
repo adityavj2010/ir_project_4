@@ -57,7 +57,7 @@ function Topics() {
       <FormLabel component="legend">Topics</FormLabel>
       <br/>
       <FormGroup>
-        {topics.map(data=><ControlLabel {...data} handleChange={handleChange(data.value)} />)}
+        {topics.map(data=><ControlLabel key={data.value} {...data} handleChange={handleChange(data.value)} />)}
       </FormGroup>
       
     </FormControl>
