@@ -4,17 +4,17 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 const common = {
-    border:1,
-    wordBreak: "break-word",
-}
+  border: 1,
+  wordBreak: "break-word",
+};
 
 const selfStyle = {
-    ...common
-}
+  ...common,
+};
 
 const otherStyle = {
-    ...common
-}
+  ...common,
+};
 
 function Message(props) {
   const selfText = props.self;
@@ -26,7 +26,7 @@ function Message(props) {
       justifyContent={selfText ? "flex-end" : "flex-start"}
       xs={12}
     >
-      <Grid sx={selfText?selfStyle:otherStyle} item xs={8}>
+      <Grid sx={selfText ? selfStyle : otherStyle} item xs={8}>
         {props.text}
       </Grid>
     </Grid>
@@ -34,14 +34,24 @@ function Message(props) {
 }
 
 function Chat(props) {
-  let myRef = React.useRef()
-  React.useEffect(()=>{
-    
-    myRef.current.scrollTo(0,Number(myRef.current.scrollHeight))
-  },[props?.data?.messages,myRef])
-  let messages = Array.isArray(props?.data?.messages)?props?.data?.messages :[]
+  let myRef = React.useRef();
+  React.useEffect(() => {
+    myRef.current.scrollTo(0, Number(myRef.current.scrollHeight));
+  }, [props?.data?.messages, myRef]);
+  let messages = Array.isArray(props?.data?.messages)
+    ? props?.data?.messages
+    : [];
   return (
-    <Grid  ref={myRef} sx={{     overflowY: 'auto', mb: "20px",minHeight:'400px', maxHeight:'400px' }} spacing={1}>
+    <Grid
+      ref={myRef}
+      sx={{
+        overflowY: "auto",
+        mb: "20px",
+        minHeight: "400px",
+        maxHeight: "400px",
+      }}
+      spacing={1}
+    >
       {messages.map(Message)}
     </Grid>
   );

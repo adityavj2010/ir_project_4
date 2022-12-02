@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 import pysolr
 
+import pandas as pd
 
 PATH = "/backend/chat/dataset.json"
 PATH = str(Path().absolute())+ PATH
@@ -36,7 +37,9 @@ solr = pysolr.Solr('http://34.130.165.83:8983/solr/chitchat', always_commit=True
 
 
 print('cleaned_objs',len(cleaned_objs))
-response = solr.add(cleaned_objs)
+cleaned_objs = pd.DataFrame(cleaned_objs)
+cleaned_objs.to_pickle('chitchat.pkl')
+# response = solr.add(cleaned_objs)
 print(response)
 
 fo.close()
