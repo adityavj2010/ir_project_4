@@ -7,7 +7,10 @@ import urllib.parse
 
 class Solr:
 
-    def query(self,text,topic):
+    def reddit_query(self,text,topic):
+        return 
+
+    def chitchat_query(self,text,topic):
         text = f'"{text}"'
         query_url = f'/select?q=query:{text}&rows=1&wt=json'
         # idx = classify_0_1(text)
