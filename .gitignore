@@ -30,3 +30,5 @@ backend/include
 instance
 
 */**/__pycache__
+
+*/**/classifier/*.pkl
