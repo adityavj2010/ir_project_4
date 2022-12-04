@@ -3,13 +3,15 @@ import requests
 import urllib.parse
 from env import URL
 import urllib.parse
+# from '/backend/classifier/classifier.py' import clas
 
 class Solr:
 
     def query(self,text,topic):
         text = f'"{text}"'
         query_url = f'/select?q=query:{text}&rows=1&wt=json'
-        
+        # idx = classify_0_1(text)
+
         res = requests.get(URL+query_url)
         # print(res)
         print(res.json()['response'] )
