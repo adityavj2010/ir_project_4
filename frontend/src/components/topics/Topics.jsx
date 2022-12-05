@@ -10,20 +10,24 @@ import Checkbox from "@mui/material/Checkbox";
 
 const topics = [
   {
-    text: "Topic 1",
+    text: "Politics",
     value: 0,
   },
   {
-    text: "Topic 2",
+    text: "Environment",
     value: 1,
   },
   {
-    text: "Topic 3",
+    text: "Technology",
     value: 2,
   },
   {
-    text: "Topic 4",
+    text: "Healthcare",
     value: 3,
+  },
+  {
+    text: "Education",
+    value: 4,
   },
   { text: "All", value: 5 },
 ];

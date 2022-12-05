@@ -8,7 +8,10 @@ import urllib.parse
 class Solr:
 
     def reddit_query(self,text,topic):
-        return 
+        print("IN REDDIT")
+        return {
+                    "message":"HALLO"
+                }    
 
     def chitchat_query(self,text,topic):
         text = f'"{text}"'

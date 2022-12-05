@@ -32,3 +32,6 @@ instance
 */**/__pycache__
 
 */**/classifier/*.pkl
+*/**/classifier/*.pickle
+*/**/chat/*.pkl
+*/**/chat/*.pickle
