@@ -35,3 +35,4 @@ instance
 */**/classifier/*.pickle
 */**/chat/*.pkl
 */**/chat/*.pickle
+*.pkl
