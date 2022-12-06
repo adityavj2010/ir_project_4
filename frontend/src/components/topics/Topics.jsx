@@ -8,28 +8,27 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormHelperText from "@mui/material/FormHelperText";
 import Checkbox from "@mui/material/Checkbox";
 
-const topics = [
+const topics_array = [
   {
     text: "Politics",
-    value: 0,
+    value: "Politics",
   },
   {
     text: "Environment",
-    value: 1,
+    value: "Environment",
   },
   {
     text: "Technology",
-    value: 2,
+    value: "Technology",
   },
   {
     text: "Healthcare",
-    value: 3,
+    value: "Healthcare",
   },
   {
     text: "Education",
-    value: 4,
+    value: "Education",
   },
-  { text: "All", value: 5 },
 ];
 
 function ControlLabel(props) {
@@ -43,25 +42,33 @@ function ControlLabel(props) {
   );
 }
 
-function Topics() {
+function Topics(props) {
+  const topicProps = props.data.topics;
+  const { data, updateData } = props;
 
-    const handleChange = (value) => ()=>{
-        if(value == 5)
-        {
-            //Select all
-        }
-        else {
-            //Do shit
-        }
-
+  const handleChange = (key) => (value) => {
+    const { messages, topics } = data;
+    console.log(key,topics[key])
+    if(topics[key])
+    {
+      topics[key] = false
+    } else {
+      topics[key] = true
     }
 
+    updateData({
+      ...data,
+      topics:topics,
+    });
+
+  }
+  console.log(topicProps)
   return (
     <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
       <FormLabel component="legend">Topics</FormLabel>
       <br/>
       <FormGroup>
-        {topics.map(data=><ControlLabel key={data.value} {...data} handleChange={handleChange(data.value)} />)}
+        {topics_array.map(data=><ControlLabel key={data.value} {...data} checked={Boolean(topicProps[data.value])} handleChange={handleChange(data.value)} />)}
       </FormGroup>
       
     </FormControl>
