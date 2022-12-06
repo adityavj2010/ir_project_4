@@ -15,7 +15,9 @@ def getClassifiedLabel(text):
 def query():
     body = request.json
     text = body["query"]
-    topic = body["topic"]
+    # topic = None
+    # if "topic" 
+    topic = body.get("topic",None)
     if getClassifiedLabel(text) == 0:
         result = solr.chitchat_query(text,topic)
     else:

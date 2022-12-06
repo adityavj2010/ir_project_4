@@ -27,8 +27,9 @@ class Solr:
         query = f'(query:"{text}"~30)^2 or response:"{text}"~30'
         # print(query)
         if topic:
-            query += " topic:"+topic
+            query = "("+ query+")" +" and topic:"+topic+"^3"
         reddit_query = make_query(query)
+        print(URL["reddit"]+reddit_query)
         res = requests.get(URL["reddit"]+reddit_query)
         return make_response(res)
 
