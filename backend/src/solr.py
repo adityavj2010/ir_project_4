@@ -5,34 +5,36 @@ from env import URL
 import urllib.parse
 # from '/backend/classifier/classifier.py' import clas
 
+
+def make_response(res):
+    if res.ok:
+        response = res.json()['response']
+        if response['numFound'] > 0:
+            if response['docs'][0]['score'] > 10:
+                return {
+                    "message": response['docs'][0]['response'][0]
+                }
+    return {
+        'message': "Aw, snap!! I don't have any response for that"
+    }
+
+def make_query(query):
+    return "/select?fl=score%2Cresponse&indent=true&q.op=OR&q=" + \
+            urllib.parse(query)+'&rows=1&wt=json'
+
+
 class Solr:
 
-    def reddit_query(self,text,topic):
-        print("IN REDDIT")
-        return {
-                    "message":"HALLO"
-                }    
+    def reddit_query(self, text, topic=None):
+        query = f'(query:"{text}"~30)^2 or response:"{text}"~30'
+        if topic:
+            query += " topic:"+topic
+        reddit_query = make_query(query)
+        res = requests.get(URL["reddit"]+reddit_query)
+        return make_response(res)
 
-    def chitchat_query(self,text,topic):
-        text = f'"{text}"'
-        query_url = f'/select?q=query:{text}&rows=1&wt=json'
-        # idx = classify_0_1(text)
-
-        res = requests.get(URL+query_url)
-        # print(res)
-        print(res.json()['response'] )
-        if res.ok:
-            response = res.json()['response']
-            # print(response)    
-            if response['numFound']>0:
-                return {
-                    "message":response['docs'][0]['response'][0]
-                }    
-            else:
-                return {
-                    'message': "Aw, snap!! I don't have any response for that"
-                }
-        return {}
-
-
-
+    def chitchat_query(self, text, topic):
+        query = f'(query:"{text}"~30)^2 or response:"{text}"~30'
+        chitchat_query = make_query(query)
+        res = requests.get(URL["chitchat"]+chitchat_query)
+        return make_response(res)
