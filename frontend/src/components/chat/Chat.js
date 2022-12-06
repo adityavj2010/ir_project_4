@@ -47,8 +47,9 @@ function Chat(props) {
       sx={{
         overflowY: "auto",
         mb: "20px",
-        minHeight: "400px",
-        maxHeight: "400px",
+        minHeight: "600px",
+        maxHeight: "60vh",
+        backgroundColor : "beige"
       }}
       spacing={1}
     >
