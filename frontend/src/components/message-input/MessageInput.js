@@ -11,14 +11,17 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SendIcon from "@mui/icons-material/Send";
 import DirectionsIcon from "@mui/icons-material/Directions";
 
-function makeQuery(query) {
+function makeQuery(query,topic_key) {
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-
-  var raw = JSON.stringify({
-    query: query,
-    topic: "topic",
-  });
+  let reqBody = {
+    query: query, 
+  }
+  if(topic_key) 
+  {
+    reqBody = {...reqBody,topic:topic_key}
+  }
+  var raw = JSON.stringify(reqBody);
 
   var requestOptions = {
     method: "POST",
@@ -42,12 +45,13 @@ function MessageInput(props) {
         key: uuidv4(),
       };
       const keys = Object.keys(data.topics);
-    
+      let topic_key = null
       for(const key of keys)
       {
-        console.log(key)
+        topic_key = key
+        break;
       }
-      makeQuery(text).then(response => response.json()).then(response => {
+      makeQuery(text,topic_key).then(response => response.json()).then(response => {
         
         const serverMessage = {
           self: false,

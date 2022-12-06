@@ -52,7 +52,6 @@ function Topics(props) {
     const new_topic = {}
     if(topics[key])
     {
-      new_topic[key] = false
     } else {
       new_topic[key] = true
     }
