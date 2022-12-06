@@ -41,6 +41,12 @@ function MessageInput(props) {
         text: text,
         key: uuidv4(),
       };
+      const keys = Object.keys(data.topics);
+    
+      for(const key of keys)
+      {
+        console.log(key)
+      }
       makeQuery(text).then(response => response.json()).then(response => {
         
         const serverMessage = {

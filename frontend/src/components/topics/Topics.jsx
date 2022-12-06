@@ -49,20 +49,21 @@ function Topics(props) {
   const handleChange = (key) => (value) => {
     const { messages, topics } = data;
     console.log(key,topics[key])
+    const new_topic = {}
     if(topics[key])
     {
-      topics[key] = false
+      new_topic[key] = false
     } else {
-      topics[key] = true
+      new_topic[key] = true
     }
 
     updateData({
       ...data,
-      topics:topics,
+      topics:new_topic,
     });
 
   }
-  console.log(topicProps)
+
   return (
     <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
       <FormLabel component="legend">Topics</FormLabel>
