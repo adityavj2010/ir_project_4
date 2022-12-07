@@ -30,7 +30,7 @@ function makeQuery(query,topic_key) {
     redirect: "follow",
   };
 
-  return fetch("http://127.0.0.1:5001/api/query", requestOptions)
+  return fetch("/api/query", requestOptions)
     
 }
 

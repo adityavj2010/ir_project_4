@@ -24,7 +24,7 @@ def make_query(query):
 class Solr:
 
     def reddit_query(self, text, topic=None):
-        query = f'(query:"{text}"~30)^2 or response:"{text}"~30'
+        query = f'(query:"{text}"~30)^10 or response:"{text}"~30'
         # print(query)
         if topic:
             query = "("+ query+")" +" and topic:"+topic+"^3"
@@ -35,10 +35,13 @@ class Solr:
 
     def chitchat_query(self, text, topic):
         # text = f'"text'
-        query = f'(query:"{text}"~30)^2 or response:"{text}"~30'
+        query = f'(query:"{text}"~5)^10 or response:"{text}"~5'
         '''
         http://34.130.165.83:8983/solr/chitchat/select?indent=true&q.op=OR&q=query%3A%22Hello%22
         '''
         chitchat_query = make_query(query)
         res = requests.get(URL["chitchat"]+chitchat_query)
-        return make_response(res)
+        response = make_response(res)
+        if response["message"]=="Aw, snap!! I don't have any response for that":
+            return self.reddit_query(text,topic)
+        return response
