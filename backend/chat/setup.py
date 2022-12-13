@@ -33,13 +33,14 @@ for key in data.keys():
                     'prompt':prompt
                 })    
 
-solr = pysolr.Solr('http://34.130.165.83:8983/solr/chitchat', always_commit=True,timeout=1100)
+solr = pysolr.Solr('http://34.73.96.127:8983/solr/chitchat', always_commit=True,timeout=1100)
 
 
 print('cleaned_objs',len(cleaned_objs))
 cleaned_objs = pd.DataFrame(cleaned_objs)
 cleaned_objs.to_pickle('chitchat.pkl')
-# response = solr.add(cleaned_objs)
+cleaned_objs = cleaned_objs.to_dict('records')
+response = solr.add(cleaned_objs)
 print(response)
 
 fo.close()
